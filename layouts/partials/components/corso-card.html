@@ -1,0 +1,5 @@
+<div class="corso-card">
+  <span class="corso-card__nome">{{ .nome }}</span>
+  {{ if .eta }}<span class="corso-card__eta">{{ .eta }}</span>{{ end }}
+  {{ if .descrizione }}<span class="corso-card__descrizione">{{ .descrizione }}</span>{{ end }}
+</div>

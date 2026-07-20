@@ -1,0 +1,9 @@
+<div class="orario-card" data-reveal>
+  <div class="orario-card__giorno">{{ .giorno }}</div>
+  {{ range .lezioni }}
+    <div class="orario-card__riga">
+      <span>{{ .nome }}</span>
+      <span class="orario-card__ora">{{ .orario }}</span>
+    </div>
+  {{ end }}
+</div>

@@ -1,0 +1,9 @@
+<section class="section" id="recensioni">
+  <div class="section__inner">
+    {{ partial "section-header.html" . }}
+    {{ $recensioni := sort (where hugo.Data.recensioni "visibile" true) "ordine" }}
+    <div class="recensioni-grid">
+      {{ range $recensioni }}{{ partial "components/recensione-card.html" . }}{{ end }}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,13 @@
+{{/* Card "click-to-load": non carica nessun iframe di Google Maps finché
+     l'utente non clicca esplicitamente, per restare leggeri e senza
+     richieste di terze parti caricate di default. */}}
+<div class="mappa-card" data-reveal>
+  <button type="button" class="mappa-card__placeholder ph-photo" data-mappa-src="{{ hugo.Data.contatti.mappa_embed_src }}" aria-label="Carica la mappa">
+    <span class="ph-photo__label">MAPPA &mdash; SEDE</span>
+    <span class="mappa-card__cta">Carica mappa</span>
+  </button>
+  <div class="mappa-card__footer">
+    <div class="mappa-card__indirizzo">{{ hugo.Data.contatti.indirizzo }}</div>
+    <div class="mappa-card__hint">Clicca per caricare la mappa &rarr;</div>
+  </div>
+</div>

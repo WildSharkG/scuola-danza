@@ -1,0 +1,22 @@
+# TODO: sostituire questi dati segnaposto con quelli reali della scuola
+# prima di andare online. Non serve toccare nessun template: basta
+# modificare i valori qui sotto.
+
+telefono: "+39 000 000 0000"
+email: "info@aunpassodalsogno.it"
+
+whatsapp:
+  numero: "390000000000"        # solo cifre, senza + o spazi (formato wa.me)
+  messaggio: "Ciao, vorrei informazioni sui corsi"
+
+social:
+  instagram: ""                  # es. https://instagram.com/nomescuola  (vuoto = link nascosto)
+  facebook: ""                    # es. https://facebook.com/nomescuola  (vuoto = link nascosto)
+
+indirizzo: "Via del Teatro 12, 00100 Roma"
+
+# Src dell'iframe Google Maps (formato senza bisogno di API key).
+# Per aggiornarlo con l'indirizzo reale, basta cambiare il testo dopo "q="
+# (spazi sostituiti da "+"), oppure incollare qui l'URL "embed" copiato
+# da Google Maps > Condividi > Incorpora una mappa.
+mappa_embed_src: "https://www.google.com/maps?q=Via+del+Teatro+12,+00100+Roma&output=embed"

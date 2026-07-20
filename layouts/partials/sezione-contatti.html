@@ -1,0 +1,35 @@
+<section class="section section--alt" id="contatti">
+  <div class="section__inner">
+    {{ partial "section-header.html" . }}
+    {{ $c := hugo.Data.contatti }}
+    <div class="contatti-row">
+      <div class="contatti-card" data-reveal>
+        <a href="tel:{{ replaceRE "[^0-9+]" "" $c.telefono }}" class="contatti-riga">
+          <span class="contatti-icona">TEL</span>
+          <span class="contatti-testo">{{ $c.telefono }}</span>
+        </a>
+        <a href="mailto:{{ $c.email }}" class="contatti-riga">
+          <span class="contatti-icona">MAIL</span>
+          <span class="contatti-testo">{{ $c.email }}</span>
+        </a>
+        {{ with $c.whatsapp }}
+        <a href="https://wa.me/{{ .numero }}?text={{ replace .messaggio " " "%20" }}" class="contatti-riga" target="_blank" rel="noopener">
+          <span class="contatti-icona">WA</span>
+          <span class="contatti-testo">Scrivici su WhatsApp</span>
+        </a>
+        {{ end }}
+        {{ if or $c.social.instagram $c.social.facebook }}
+        <div class="contatti-riga contatti-riga--social">
+          <span class="contatti-icona">SOC</span>
+          <div class="contatti-social">
+            {{ with $c.social.instagram }}<a href="{{ . }}" target="_blank" rel="noopener">Instagram</a>{{ end }}
+            {{ with $c.social.facebook }}<a href="{{ . }}" target="_blank" rel="noopener">Facebook</a>{{ end }}
+          </div>
+        </div>
+        {{ end }}
+      </div>
+
+      {{ partial "components/mappa-embed.html" . }}
+    </div>
+  </div>
+</section>

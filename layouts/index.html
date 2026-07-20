@@ -1,0 +1,6 @@
+{{ define "main" }}
+  {{ partial "hero.html" . }}
+  {{ range partial "sezioni-attive.html" . }}
+    {{ partial (printf "sezione-%s.html" .Params.tipo) . }}
+  {{ end }}
+{{ end }}

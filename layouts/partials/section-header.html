@@ -1,0 +1,7 @@
+{{/* Partial generico riusato da tutte le sezioni: eyebrow + h2 + paragrafo.
+     Il paragrafo è il corpo Markdown del file content/sezioni/<tipo>.md. */}}
+<div class="section-header" data-reveal>
+  <div class="section-header__eyebrow">{{ .Params.eyebrow }}</div>
+  <h2 class="section-header__title">{{ .Params.titolo }}</h2>
+  <div class="section-header__text">{{ .Content }}</div>
+</div>

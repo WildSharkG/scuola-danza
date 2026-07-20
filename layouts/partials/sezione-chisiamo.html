@@ -1,0 +1,20 @@
+<section class="section section--alt" id="chisiamo">
+  <div class="section__inner">
+    {{ partial "section-header.html" . }}
+    {{ $c := hugo.Data.contatori }}
+    <div class="contatori-row" data-reveal data-counters>
+      <div class="contatore">
+        <div class="contatore__numero" data-count-target="{{ $c.anni_esperienza }}" data-count-suffix="+">0</div>
+        <div class="contatore__etichetta">ANNI DI ESPERIENZA</div>
+      </div>
+      <div class="contatore">
+        <div class="contatore__numero" data-count-target="{{ $c.allievi_felici }}" data-count-suffix="+">0</div>
+        <div class="contatore__etichetta">ALLIEVI FELICI</div>
+      </div>
+      <div class="contatore">
+        <div class="contatore__numero" data-count-target="{{ $c.corsi_su_misura }}" data-count-suffix="">0</div>
+        <div class="contatore__etichetta">CORSI SU MISURA</div>
+      </div>
+    </div>
+  </div>
+</section>

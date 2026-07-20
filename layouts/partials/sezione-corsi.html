@@ -1,0 +1,27 @@
+<section class="section" id="corsi">
+  <div class="section__inner">
+    {{ partial "section-header.html" . }}
+
+    {{ $corsi := where hugo.Data.corsi "visibile" true }}
+
+    {{ $bambini := sort (where $corsi "gruppo" "bambini-ragazzi") "ordine" }}
+    {{ if $bambini }}
+      <div class="corsi-gruppo" data-reveal>
+        <div class="corsi-gruppo__titolo">Bambini e ragazzi</div>
+        <div class="corsi-grid">
+          {{ range $bambini }}{{ partial "components/corso-card.html" . }}{{ end }}
+        </div>
+      </div>
+    {{ end }}
+
+    {{ $tutti := sort (where $corsi "gruppo" "tutti") "ordine" }}
+    {{ if $tutti }}
+      <div class="corsi-gruppo" data-reveal>
+        <div class="corsi-gruppo__titolo">Corsi per tutti</div>
+        <div class="corsi-grid">
+          {{ range $tutti }}{{ partial "components/corso-card.html" . }}{{ end }}
+        </div>
+      </div>
+    {{ end }}
+  </div>
+</section>

@@ -1,0 +1,22 @@
+# Output generato da Hugo: si ricrea con "hugo --gc --minify", non va versionato.
+/public/
+/resources/
+.hugo_build.lock
+
+# File di sistema
+.DS_Store
+Thumbs.db
+
+# Segreti e credenziali: il progetto oggi non ne usa nessuno (sito statico,
+# nessuna API key/account), ma la regola vale comunque "sempre, senza
+# eccezioni" per prevenire commit accidentali futuri (es. se un domani si
+# aggiunge un token per il CMS o per la CI).
+.env
+.env.local
+.env.production
+.env.*.local
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/

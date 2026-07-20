@@ -1,0 +1,9 @@
+<section class="section section--alt" id="danzatricita">
+  <div class="section__inner">
+    {{ partial "section-header.html" . }}
+    {{ $items := sort (where hugo.Data.danzatricita "visibile" true) "ordine" }}
+    <div class="corsi-grid" data-reveal>
+      {{ range $items }}{{ partial "components/corso-card.html" . }}{{ end }}
+    </div>
+  </div>
+</section>

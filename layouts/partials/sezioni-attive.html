@@ -1,0 +1,7 @@
+{{/* Restituisce le pagine di content/sezioni/ con attivo:true, ordinate
+     per il campo "ordine". Usata sia da index.html sia da header-nav.html,
+     così le due restano sempre sincronizzate. */}}
+{{ $pagine := where .Site.Pages "Section" "sezioni" }}
+{{ $pagine = where $pagine "Params.attivo" true }}
+{{ $pagine = $pagine.ByParam "ordine" }}
+{{ return $pagine }}

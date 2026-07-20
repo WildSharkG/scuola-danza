@@ -1,0 +1,52 @@
+# Elenco corsi "principali" (bambini/ragazzi + corsi per tutti).
+# I corsi di DanzatricitÃ  hanno una loro collection separata: data/danzatricita.yaml
+#
+# Campi:
+#   nome        - testo, obbligatorio
+#   gruppo      - "bambini-ragazzi" oppure "tutti" (decide sotto quale titolo appare)
+#   eta         - testo libero, facoltativo (es. "Dai 5 anni"). Lascia "" se non serve.
+#   descrizione - testo libero, facoltativo, una riga breve.
+#   ordine      - numero: più basso = più in alto nell'elenco
+#   visibile    - true per mostrarlo, false per nasconderlo senza cancellarlo
+
+- nome: "Piccoli esploratori"
+  gruppo: "bambini-ragazzi"
+  eta: "Dai 3 anni"
+  descrizione: "Esplorazione del movimento"
+  ordine: 1
+  visibile: true
+
+- nome: "Danza classica"
+  gruppo: "bambini-ragazzi"
+  eta: "Dai 5 anni"
+  descrizione: ""
+  ordine: 2
+  visibile: true
+
+- nome: "Danza moderna (contemporary modern)"
+  gruppo: "bambini-ragazzi"
+  eta: "Dai 5 anni"
+  descrizione: ""
+  ordine: 3
+  visibile: true
+
+- nome: "Danza classica e moderna"
+  gruppo: "bambini-ragazzi"
+  eta: "Adulti e principianti"
+  descrizione: ""
+  ordine: 4
+  visibile: true
+
+- nome: "Balli di gruppo"
+  gruppo: "tutti"
+  eta: ""
+  descrizione: ""
+  ordine: 1
+  visibile: true
+
+- nome: "Pilates"
+  gruppo: "tutti"
+  eta: ""
+  descrizione: ""
+  ordine: 2
+  visibile: true

@@ -1,0 +1,23 @@
+# Pipeline CI per Codeberg (Woodpecker CI — https://ci.codeberg.org).
+#
+# NON si attiva da sola: la prima volta bisogna abilitare il repository su
+# https://ci.codeberg.org (login con l'account Codeberg, poi "abilita
+# repo"). È un passo manuale una tantum, non automatico. Dettagli in
+# docs/DEPLOYMENT.md.
+#
+# Cosa fa questa pipeline (adattamento proporzionato di CLAUDE.md §12 a un
+# sito statico senza backend/dipendenze applicative: niente SAST/DAST,
+# che avrebbe poco senso qui, ma sì verifica build + scansione segreti):
+#   1. verifica che il sito Hugo si costruisca senza errori
+#   2. scansiona il repository alla ricerca di segreti committati per errore
+
+steps:
+  build:
+    image: hugomods/hugo:exts
+    commands:
+      - hugo --gc --minify
+
+  secret-scan:
+    image: zricethezav/gitleaks
+    commands:
+      - gitleaks detect --source . --no-git -v

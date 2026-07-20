@@ -1,0 +1,32 @@
+# Collection separata per i corsi di DanzatricitÃ .
+# Stessi campi di data/corsi.yaml, ma senza il campo "gruppo" (qui non serve).
+
+- nome: "Danzatricità con il genitore"
+  eta: "Dai 0 mesi"
+  descrizione: ""
+  ordine: 1
+  visibile: true
+
+- nome: "Danzatricità in autonomia"
+  eta: ""
+  descrizione: ""
+  ordine: 2
+  visibile: true
+
+- nome: "Danzatricità in lingua straniera"
+  eta: ""
+  descrizione: ""
+  ordine: 3
+  visibile: true
+
+- nome: "Danzatricità in inclusione"
+  eta: ""
+  descrizione: ""
+  ordine: 4
+  visibile: true
+
+- nome: "Danzatricità in anzianità"
+  eta: ""
+  descrizione: ""
+  ordine: 5
+  visibile: true

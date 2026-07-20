@@ -1,0 +1,14 @@
+baseURL = "https://fukuroo.codeberg.page/scuola-danza/"
+locale = "it_IT"
+title = "A un passo dal sogno"
+
+# Sito one-page: niente RSS/sitemap/robots, non servono per una singola pagina statica.
+disableKinds = ["RSS", "sitemap", "taxonomy", "term", "404"]
+
+# Nessun analytics/tracker per scelta di progetto: restiamo leggeri e senza cookie banner.
+[services]
+  [services.googleAnalytics]
+    ID = ""
+
+[params]
+  descrizione = "Scuola di danza classica, danza moderna, danzatricità e pilates per bambini e adulti."

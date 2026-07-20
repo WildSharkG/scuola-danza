@@ -1,0 +1,31 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ .Site.Title }}</title>
+  <meta name="description" content="{{ .Site.Params.descrizione }}">
+
+  {{/* Baseline di sicurezza indipendente dall'hosting: funziona ovunque il
+       sito venga servito, anche se l'host finale non permette di impostare
+       header HTTP custom (es. molte piattaforme di "static pages" gratuite
+       non lo consentono). Copre CSP (tranne frame-ancestors, che il tag
+       <meta> non può impostare: serve l'header HTTP vero, vedi
+       static/_headers e static/web.config) e Referrer-Policy.
+       X-Frame-Options, HSTS, X-Content-Type-Options e Permissions-Policy
+       NON hanno equivalente <meta>: richiedono l'header HTTP dell'hosting
+       scelto — vedi docs/DEPLOYMENT.md. */}}
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ "img/favicon-32x32.png" | relURL }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ "img/favicon-16x16.png" | relURL }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ "img/apple-touch-icon.png" | relURL }}">
+
+  {{/* Font caricato con fallback di sistema per non introdurre una richiesta
+       verso server terzi (Google Fonts) di default: coerente con la scelta
+       "niente tracker/terze parti" fatta per il resto del sito. Quando si
+       deciderà l'hosting, si può sostituire con il file woff2 reale
+       auto-ospitato in assets/fonts/. */}}
+
+  {{ $css := resources.Get "css/main.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+</head>

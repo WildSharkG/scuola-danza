@@ -1,0 +1,28 @@
+# Orario settimanale. Per nascondere TUTTA la sezione Orari (es. in estate)
+# usa il campo "attivo: false" in content/sezioni/orari.md — non serve
+# toccare questo file. Per aggiungere/togliere una lezione, aggiungi o
+# rimuovi una riga sotto "lezioni".
+
+- giorno: "Lunedì"
+  ordine: 1
+  lezioni:
+    - nome: "Danza classica · Bambini"
+      orario: "17:00–18:00"
+    - nome: "Pilates · Adulti"
+      orario: "19:00–20:00"
+
+- giorno: "Mercoledì"
+  ordine: 2
+  lezioni:
+    - nome: "Danza moderna · Bambini"
+      orario: "17:00–18:00"
+    - nome: "Danza classica · Adulti"
+      orario: "19:00–20:00"
+
+- giorno: "Venerdì"
+  ordine: 3
+  lezioni:
+    - nome: "Danza moderna · Adulti"
+      orario: "18:30–19:30"
+    - nome: "Pilates · Adulti"
+      orario: "19:30–20:30"

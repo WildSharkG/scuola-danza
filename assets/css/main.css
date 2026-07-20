@@ -1,0 +1,673 @@
+/* ==========================================================================
+   Design token (estratti dal design di riferimento)
+   ========================================================================== */
+:root {
+  /* colori */
+  --bg: oklch(0.98 0.008 240);
+  --bg-alt: oklch(0.94 0.03 240);
+  --text: oklch(0.34 0.03 250);
+  --text-muted: oklch(0.46 0.02 250);
+  --heading: oklch(0.32 0.03 250);
+  --accent: oklch(0.65 0.09 240);
+  --accent-strong: oklch(0.45 0.08 245);
+  --accent-soft: oklch(0.78 0.07 240);
+  --shadow-color: oklch(0.4 0.04 250 / 0.09);
+  --shadow-color-soft: oklch(0.4 0.04 250 / 0.07);
+  --card-bg: #fff;
+  --border-soft: oklch(0.9 0.02 240);
+
+  /* placeholder "foto" (righe diagonali, come nel design) */
+  --ph-a: oklch(0.88 0.05 240);
+  --ph-b: oklch(0.93 0.03 240);
+  --ph-label: oklch(0.46 0.06 240);
+
+  /* tipografia. "Cormorant Garamond" resta primo in lista: se un domani si
+     deciderà di auto-ospitare il webfont reale, basterà aggiungere le
+     regole @font-face qui sopra senza toccare il resto del CSS. Per ora,
+     niente richieste a server di terze parti: si usano i serif di sistema. */
+  --font-serif: 'Cormorant Garamond', 'EB Garamond', Garamond, Georgia, 'Times New Roman', serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* spaziature */
+  --header-h: 64px;
+  --radius-lg: 22px;
+  --radius-md: 18px;
+  --radius-sm: 16px;
+  --radius-pill: 999px;
+  --breakpoint-desktop: 900px;
+}
+
+/* ==========================================================================
+   Reset di base
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  font-family: var(--font-serif);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-strong);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+::selection {
+  background: oklch(0.9 0.04 240);
+  color: var(--heading);
+}
+
+/* ==========================================================================
+   Header / nav
+   ========================================================================== */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: transparent;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.site-header.is-scrolled {
+  background: oklch(0.98 0.008 240 / 0.92);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 16px var(--shadow-color);
+}
+
+@media (min-width: 900px) {
+  .site-header {
+    background: oklch(0.98 0.008 240 / 0.92);
+    backdrop-filter: blur(8px);
+  }
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-h);
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+@media (min-width: 900px) {
+  .site-header__inner {
+    padding: 0 48px;
+  }
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 20px;
+  color: var(--accent-strong);
+}
+
+.brand__mark {
+  border-radius: 50%;
+}
+
+.nav--desktop {
+  display: none;
+  align-items: center;
+  gap: 30px;
+}
+
+@media (min-width: 900px) {
+  .nav--desktop {
+    display: flex;
+  }
+  .nav-toggle {
+    display: none;
+  }
+}
+
+.nav__link {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--text);
+}
+
+.nav--desktop .nav__link:last-child {
+  font-size: 15px;
+  color: #fff;
+  background: var(--accent);
+  padding: 10px 22px;
+  border-radius: var(--radius-pill);
+}
+
+.nav--desktop .nav__link:last-child:hover {
+  color: #fff;
+  background: var(--accent-strong);
+}
+
+.nav-toggle {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  width: 20px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--text);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.nav-toggle.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle.is-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.nav--mobile {
+  max-height: 0;
+  overflow: hidden;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  transition: max-height 0.35s ease;
+}
+
+.nav--mobile.is-open {
+  max-height: 320px;
+  box-shadow: 0 8px 16px var(--shadow-color);
+}
+
+@media (min-width: 900px) {
+  .nav--mobile {
+    display: none;
+  }
+}
+
+.nav__link--mobile {
+  font-size: 20px;
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+.hero {
+  position: relative;
+  height: 640px;
+  overflow: hidden;
+  padding-top: var(--header-h);
+}
+
+.hero__bg {
+  position: absolute;
+  inset: -140px 0 auto 0;
+  height: 780px;
+  will-change: transform;
+}
+
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, oklch(0.9 0.03 240 / 0) 40%, var(--bg) 100%);
+}
+
+.hero__content {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 clamp(24px, 6vw, 120px) 56px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.hero__title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-style: italic;
+  font-size: 46px;
+  line-height: 1.1;
+  margin: 0 0 14px;
+  color: var(--heading);
+}
+
+.hero__subtitle {
+  margin: 0 0 26px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--text-muted);
+  max-width: 420px;
+}
+
+.hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  max-width: 480px;
+}
+
+/* ==========================================================================
+   Bottoni
+   ========================================================================== */
+.btn {
+  flex: 1;
+  min-width: 180px;
+  text-align: center;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: var(--radius-pill);
+  padding: 15px;
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 8px 20px oklch(0.65 0.09 240 / 0.35);
+}
+
+.btn--primary:hover {
+  color: #fff;
+  background: var(--accent-strong);
+}
+
+.btn--outline {
+  background: transparent;
+  border: 2px solid var(--accent);
+  color: var(--accent-strong);
+  padding: 13px;
+}
+
+/* ==========================================================================
+   Sezioni (generico)
+   ========================================================================== */
+.section {
+  padding: 64px 20px 56px;
+  background: var(--bg);
+}
+
+.section--alt {
+  background: var(--bg-alt);
+}
+
+.section__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-header__eyebrow {
+  font: 11px/1 var(--font-mono);
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.section-header__title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 29px;
+  margin: 0 0 10px;
+  color: var(--heading);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.section-header__text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.section-header__text p {
+  margin: 0;
+}
+
+/* ==========================================================================
+   Reveal allo scroll (fade-in + slide-up)
+   ========================================================================== */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   Placeholder "foto" (righe diagonali) - stessa idea del design originale
+   ========================================================================== */
+.ph-photo {
+  position: relative;
+  overflow: hidden;
+  background: repeating-linear-gradient(115deg, var(--ph-a) 0 16px, var(--ph-b) 16px 32px);
+}
+
+.ph-photo__label {
+  position: absolute;
+  bottom: 10px;
+  left: 14px;
+  font: 10px/1.4 var(--font-mono);
+  color: var(--ph-label);
+  letter-spacing: 0.05em;
+}
+
+/* ==========================================================================
+   Corsi / DanzatricitÃ
+   ========================================================================== */
+.corsi-gruppo__titolo {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--accent);
+  margin: 28px 0 12px;
+}
+
+.corsi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 10px;
+}
+
+.corso-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  box-shadow: 0 4px 14px var(--shadow-color-soft);
+  display: flex;
+  flex-direction: column;
+}
+
+.corso-card__nome {
+  font-weight: 800;
+  font-size: 15px;
+}
+
+.corso-card__eta,
+.corso-card__descrizione {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-top: 3px;
+}
+
+/* ==========================================================================
+   Orari
+   ========================================================================== */
+.orari-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.orario-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  box-shadow: 0 4px 16px var(--shadow-color-soft);
+}
+
+.orario-card__giorno {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--accent-strong);
+  margin-bottom: 10px;
+}
+
+.orario-card__riga {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-top: 1px solid var(--border-soft);
+  font-size: 14px;
+}
+
+.orario-card__ora {
+  font-weight: 700;
+  color: oklch(0.42 0.02 250);
+}
+
+/* ==========================================================================
+   Chi siamo / contatori
+   ========================================================================== */
+.contatori-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 36px;
+  flex-wrap: wrap;
+}
+
+.contatore {
+  text-align: center;
+  flex: 1;
+  min-width: 140px;
+}
+
+.contatore__numero {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 34px;
+  color: var(--accent);
+}
+
+.contatore__etichetta {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   Recensioni
+   ========================================================================== */
+.recensioni-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+  margin-top: 32px;
+}
+
+.recensione-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: 0 6px 24px var(--shadow-color);
+}
+
+.recensione-card__testo {
+  font-size: 14px;
+  line-height: 1.6;
+  color: oklch(0.36 0.03 250);
+  font-style: italic;
+}
+
+.recensione-card__autore {
+  margin-top: 14px;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--accent);
+}
+
+/* ==========================================================================
+   Contatti / mappa
+   ========================================================================== */
+.contatti-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 32px;
+  align-items: flex-start;
+}
+
+.contatti-card,
+.mappa-card {
+  flex: 1 1 320px;
+  min-width: 280px;
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 6px 24px var(--shadow-color);
+}
+
+.contatti-card {
+  padding: 4px 18px;
+}
+
+.contatti-riga {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-soft);
+  color: var(--text);
+}
+
+.contatti-riga:last-child {
+  border-bottom: none;
+}
+
+.contatti-icona {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: oklch(0.92 0.04 240);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--accent);
+  flex: none;
+}
+
+.contatti-testo {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.contatti-social {
+  display: flex;
+  gap: 16px;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.mappa-card {
+  overflow: hidden;
+  display: block;
+}
+
+.mappa-card__placeholder {
+  width: 100%;
+  height: 180px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+.mappa-card__cta {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 13px;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+}
+
+.mappa-card iframe {
+  width: 100%;
+  height: 180px;
+  border: none;
+  display: block;
+}
+
+.mappa-card__footer {
+  padding: 16px 18px;
+}
+
+.mappa-card__indirizzo {
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--heading);
+}
+
+.mappa-card__hint {
+  font-size: 12px;
+  color: var(--accent);
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.site-footer {
+  padding: 32px 20px 40px;
+  background: var(--bg);
+  text-align: center;
+}
+
+.site-footer__brand {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--accent-strong);
+  margin-bottom: 6px;
+}
+
+.site-footer__copy {
+  font-size: 12px;
+  color: oklch(0.52 0.02 250);
+}

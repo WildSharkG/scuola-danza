@@ -1,0 +1,18 @@
+<section class="hero" id="hero">
+  <div class="hero__bg ph-photo" id="hero-bg" data-parallax>
+    <span class="ph-photo__label">FOTO &mdash; SALA DI DANZA</span>
+  </div>
+  <div class="hero__scrim"></div>
+  <div class="hero__content">
+    <h1 class="hero__title">{{ .Params.hero_titolo }}</h1>
+    <p class="hero__subtitle">{{ .Params.hero_sottotitolo }}</p>
+    <div class="hero__cta">
+      {{ with .Params.hero_cta_primaria }}
+        <a href="{{ .link }}" class="btn btn--primary"{{ if eq .tipo "esterno" }} target="_blank" rel="noopener"{{ end }}>{{ .testo }}</a>
+      {{ end }}
+      {{ with .Params.hero_cta_secondaria }}
+        <a href="{{ .link }}" class="btn btn--outline"{{ if eq .tipo "esterno" }} target="_blank" rel="noopener"{{ end }}>{{ .testo }}</a>
+      {{ end }}
+    </div>
+  </div>
+</section>
