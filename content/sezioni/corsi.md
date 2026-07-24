@@ -2,7 +2,7 @@
 tipo: "corsi"
 nav_label: "Corsi"
 eyebrow: "I NOSTRI CORSI"
-titolo: "Un percorso per ogni età"
+titolo: "Un percorso per ogni eta'"
 ordine: 1
 attivo: true
 build:

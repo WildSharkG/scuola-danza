@@ -1,7 +1,7 @@
 ---
 title: "A un passo dal sogno"
 hero_titolo: "A un passo dal sogno"
-hero_sottotitolo: "Danza classica, danza moderna e pilates per bambini e adulti, nel cuore della città."
+hero_sottotitolo: "Danza classica, danza moderna e pilates per bambini e adulti, nel cuore del paese."
 hero_cta_primaria:
   testo: "Scopri i corsi"
   link: "#corsi"
