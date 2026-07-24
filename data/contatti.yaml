@@ -10,13 +10,14 @@ whatsapp:
   messaggio: "Ciao, vorrei informazioni sui corsi"
 
 social:
-  instagram: ""                  # es. https://instagram.com/nomescuola  (vuoto = link nascosto)
+  instagram: "https://www.instagram.com/aunpassodalsogno_c.s.danza/"                  # es. https://instagram.com/nomescuola  (vuoto = link nascosto)
   facebook: ""                    # es. https://facebook.com/nomescuola  (vuoto = link nascosto)
 
-indirizzo: "Via del Teatro 12, 00100 Roma"
+indirizzo: "Via Goffredo Mameli, 1, 70010 Turi BA"
 
 # Src dell'iframe Google Maps (formato senza bisogno di API key).
 # Per aggiornarlo con l'indirizzo reale, basta cambiare il testo dopo "q="
 # (spazi sostituiti da "+"), oppure incollare qui l'URL "embed" copiato
 # da Google Maps > Condividi > Incorpora una mappa.
-mappa_embed_src: "https://www.google.com/maps?q=Via+del+Teatro+12,+00100+Roma&output=embed"
+# mappa_embed_src: "https://www.google.com/maps?q=Via+del+Teatro+12,+00100+Roma&output=embed"
+mappa_embed_src: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1065.9347970680813!2d17.022354706801668!3d40.91752421010877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1347b9001dde81e9%3A0x39323056f8cf0836!2sASD%20A%20un%20Passo%20dal%20Sogno%20-%20Centro%20Studi%20Danza!5e0!3m2!1sit!2sit!4v1784933685870!5m2!1sit!2sit"
