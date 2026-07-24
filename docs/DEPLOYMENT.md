@@ -1,18 +1,18 @@
 # Deployment — A un passo dal sogno
 
-> Versione: 1.0
-> Data ultima revisione: 2026-07-20
+> Versione: 1.1
+> Data ultima revisione: 2026-07-25
 
 **Nota sul nome del file**: `CLAUDE.md` §16 prevede un file chiamato
 `docs/DEPLOYMENT-WINDOWS.md`, presupponendo un deployment su Windows
-Server on-premises. Per questo progetto l'hosting finale **non è ancora
-stato deciso** (era già stato segnalato come punto aperto durante la
-progettazione: Codeberg Pages, Netlify o un self-hosting Windows/IIS sono
-tutte opzioni plausibili). Fissare fin da ora un solo scenario
-sarebbe fuorviante. Questo documento copre quindi tutte le opzioni
-plausibili, con una sezione dedicata a Windows/IIS che risponde
-comunque all'esigenza originale del nome del file. Una volta scelto
-l'hosting definitivo, si può rinominare/restringere questo documento.
+Server on-premises. Per questo progetto l'hosting scelto è **GitHub
+Pages** (vedi la guida dedicata `docs/DEPLOYMENT-GITHUB.md`, che copre
+anche l'attivazione della CI e la modifica dei contenuti senza
+competenze tecniche). Questo documento resta un riferimento generico
+multi-host, utile se in futuro servisse un'alternativa (Netlify,
+self-hosting Windows/IIS o Linux/Nginx) — include comunque una sezione
+dedicata a Windows/IIS che risponde all'esigenza originale del nome del
+file previsto da `CLAUDE.md`.
 
 ---
 
@@ -42,8 +42,7 @@ piattaforme di hosting statico lo permettono**.
 |---|---|---|
 | Netlify | Sì | Legge `static/_headers` automaticamente (già incluso nel progetto) |
 | Cloudflare Pages | Sì | Stesso formato `_headers` di Netlify |
-| Codeberg Pages | **No** | Serve solo file statici, non permette header custom. Serve un CDN/proxy davanti (es. Cloudflare in modalità proxy) se si vogliono gli header completi |
-| GitHub Pages | **No** | Stessa limitazione di Codeberg Pages |
+| GitHub Pages | **No** | Serve solo file statici, non permette header custom. Serve un CDN/proxy davanti (es. Cloudflare in modalità proxy) se si vogliono gli header completi — vedi `docs/DEPLOYMENT-GITHUB.md` §A.6 |
 | Self-hosting IIS (Windows Server) | Sì | Usa `static/web.config`, già incluso nel progetto (vedi §3 sotto) |
 | Self-hosting Nginx | Sì | Vedi snippet in §4 sotto |
 
@@ -100,21 +99,23 @@ server {
 }
 ```
 
-## 5. CI: attivare la pipeline Woodpecker su Codeberg
+## 5. CI: il workflow GitHub Actions
 
-Il file `.woodpecker.yml` nella radice del progetto esegue, ad ogni
-push:
+Il file `.github/workflows/deploy.yml` nella radice del progetto esegue,
+ad ogni push su `main`:
 1. una build di verifica (`hugo --gc --minify` deve completare senza
    errori);
-2. una scansione dei segreti (`gitleaks`) sul repository.
+2. una scansione dei segreti (`gitleaks`) sul repository;
+3. la pubblicazione su GitHub Pages, solo se i due controlli precedenti
+   sono andati a buon fine.
 
-**Non si attiva da sola.** Passi una tantum:
-1. Vai su https://ci.codeberg.org e accedi con l'account Codeberg.
-2. Abilita il repository dalla lista.
-3. Da quel momento ogni push esegue automaticamente la pipeline.
+**Si attiva già da solo dal primo push**: a differenza di Woodpecker/
+Codeberg, non serve alcuna iscrizione o abilitazione manuale su un sito
+esterno — basta l'impostazione una tantum "Source: GitHub Actions" nelle
+Settings → Pages del repository (vedi `docs/DEPLOYMENT-GITHUB.md` §A.3).
 
-Se non si vuole usare Woodpecker, i due controlli si possono comunque
-eseguire localmente prima di ogni commit:
+Se si preferisce non affidarsi alla CI, gli stessi due controlli si
+possono comunque eseguire localmente prima di ogni commit:
 ```
 hugo --gc --minify
 gitleaks detect --source . --no-git -v
@@ -126,10 +127,17 @@ gitleaks detect --source . --no-git -v
 - [ ] `data/contatti.yaml` aggiornato con i contatti reali (non più
       segnaposto)
 - [ ] Logo/favicon reali sostituiti in `static/img/` (vedi `README.md`)
+- [ ] **Font "The Seasons" sostituito con una versione a licenza piena**
+      (quello in `static/fonts/the-seasons.woff2` è una demo Fontspring,
+      non licenziata per un sito pubblico, e copre solo l'ASCII base senza
+      accenti — vedi commento in cima a `assets/css/main.css`)
 - [ ] Build di produzione pulita: `hugo --gc --minify` senza errori/warning
-- [ ] Solo la cartella `public/` viene pubblicata (mai i sorgenti)
-- [ ] HTTPS forzato con redirect da HTTP (vedi §3/§4 secondo l'host)
+- [ ] Solo la cartella `public/` viene pubblicata (mai i sorgenti) —
+      con GitHub Actions questo è già garantito dal workflow, non serve
+      farlo a mano
+- [ ] HTTPS forzato con redirect da HTTP (automatico su GitHub Pages;
+      vedi §3/§4 se invece si sceglie il self-hosting)
 - [ ] Header di sicurezza verificati con https://securityheaders.com
 - [ ] Nessun segreto nel repository (`gitleaks detect --source . --no-git`)
-- [ ] Se si adotta un host che non supporta header custom (Codeberg
-      Pages/GitHub Pages): valutato consapevolmente il trade-off (vedi §2)
+- [ ] Consapevoli che GitHub Pages non supporta header HTTP custom
+      (vedi §2): il sito resta protetto solo dalla CSP via `<meta>` tag

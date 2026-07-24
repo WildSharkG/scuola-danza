@@ -1,0 +1,108 @@
+name: Deploy su GitHub Pages
+
+# Sostituisce il vecchio .woodpecker.yml (Codeberg/Woodpecker). Si attiva
+# automaticamente ad ogni push su "main" — richiede una sola impostazione
+# una tantum nel repository (non ripetuta ad ogni run, a differenza
+# dell'abilitazione manuale che Woodpecker richiedeva su ci.codeberg.org):
+# Settings → Pages → "Build and deployment" → Source: "GitHub Actions".
+# Dettagli in docs/DEPLOYMENT-GITHUB.md Parte A.3.
+#
+# Cosa fa (adattamento proporzionato di CLAUDE.md §12 a un sito statico
+# senza backend: niente SAST/DAST completo, ma build di verifica +
+# scansione segreti, stesso spirito del precedente .woodpecker.yml):
+#   1. builda il sito Hugo (deve completare senza errori)
+#   2. scansiona il repository alla ricerca di segreti (gitleaks)
+#   3. pubblica su GitHub Pages SOLO se sia la build sia la scansione
+#      segreti sono andate a buon fine (vedi "needs" del job deploy)
+#
+# Nota per manutenzione futura: le versioni delle action sotto sono state
+# verificate al momento della scrittura (luglio 2026, subito dopo la
+# rimozione di Node 20 dai runner GitHub-hosted prevista per il 16
+# settembre 2026 — da qui actions/checkout@v6 e gitleaks-action@v3,
+# entrambe su Node 24, invece delle versioni precedenti). Da riconfermare
+# rispetto al template ufficiale live (actions/starter-workflows →
+# pages/hugo.yml) se non toccato per molto tempo.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # permette di ripubblicare a mano dalla scheda "Actions" senza un commit vuoto
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false # non interrompere un deploy già in corso: evita di pubblicare uno stato a metà
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      # Tenere allineata alla versione usata in sviluppo locale, vedi
+      # docs/ARCHITETTURA.md §3. Aggiornare entrambe insieme.
+      HUGO_VERSION: "0.163.3"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Installa Hugo (extended, versione pinnata)
+        run: |
+          wget -O "${{ runner.temp }}/hugo.deb" \
+            "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb"
+          sudo dpkg -i "${{ runner.temp }}/hugo.deb"
+          # Niente Dart Sass: il progetto usa solo CSS/JS "vanilla" (nessun
+          # file .scss, vedi assets/css/main.css) e il bundling JS passa da
+          # js.Build/esbuild, già integrato in Hugo Pipes.
+
+      - name: Configura GitHub Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Build del sito
+        env:
+          HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
+        run: hugo --gc --minify
+
+      - name: Carica l'artefatto per Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  secret-scan:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout (cronologia completa, richiesta da gitleaks-action)
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Scansione segreti (gitleaks)
+        uses: gitleaks/gitleaks-action@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # GITLEAKS_LICENSE necessaria SOLO se il repository appartiene a
+          # un'organizzazione GitHub, non per un account personale. Se in
+          # futuro il repo passasse a un'organizzazione: richiedere una
+          # licenza gratuita su gitleaks.io, salvarla come secret
+          # "GITLEAKS_LICENSE" nelle Settings del repository e scommentare:
+          # GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
+
+  deploy:
+    needs: [build, secret-scan]
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Pubblica su GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

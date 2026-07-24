@@ -1,7 +1,7 @@
 # Architettura — A un passo dal sogno
 
-> Versione: 1.0
-> Data ultima revisione: 2026-07-20
+> Versione: 1.1
+> Data ultima revisione: 2026-07-25
 
 Questo documento applica al progetto le linee guida di sicurezza in
 `CLAUDE.md`, con un'analisi onesta di cosa si applica e cosa no. `CLAUDE.md`
@@ -76,11 +76,11 @@ composto esclusivamente da file statici pre-generati in fase di build.
 | Output encoding / anti-XSS | ✅ | Tutti i contenuti editabili (recensioni, corsi, testi sezione) passano per l'auto-escaping contestuale di default dei template Go/Hugo. Nessun uso di `safeHTML`/`safeJS`/`safeCSS` sui contenuti provenienti da YAML/Markdown. |
 | HSTS | ✅ (dove l'host lo supporta) | In `static/_headers` e `static/web.config`. Non impostabile via meta tag. |
 | X-Frame-Options / Referrer-Policy / X-Content-Type-Options / Permissions-Policy | ⚠️ parziale | Referrer-Policy anche via meta tag (funziona ovunque). Gli altri richiedono header HTTP reale: dipendono dall'host finale, vedi `docs/DEPLOYMENT.md`. |
-| Rimozione header che espongono la tecnologia (`X-Powered-By`, `Server`) | ✅ (dove l'host lo supporta) | Configurato in `static/web.config` per IIS. Su hosting statico gestito (Netlify, Codeberg Pages...) dipende dalla piattaforma, non controllabile dal progetto. |
+| Rimozione header che espongono la tecnologia (`X-Powered-By`, `Server`) | ✅ (dove l'host lo supporta) | Configurato in `static/web.config` per IIS. Su hosting statico gestito (Netlify, GitHub Pages...) dipende dalla piattaforma, non controllabile dal progetto. |
 | Mappa "click-to-load" | ✅ | Nessuna richiesta di terze parti (Google) caricata di default: solo al click esplicito dell'utente. Riduce l'esposizione dei dati dei visitatori verso terzi. |
 | Nessun tracker/analytics/cookie | ✅ | Scelta di design esplicita — coerente con data minimization (vedi §10). |
 | Segreti nel codice | ✅ nessuno presente | Verificato con scansione manuale del repository. `.gitignore` include comunque i pattern di file-segreto standard per prevenzione futura. |
-| Scansione automatica dei segreti in CI | ✅ (da attivare) | `.woodpecker.yml` esegue `gitleaks` ad ogni push, una volta abilitata la pipeline su ci.codeberg.org (attivazione manuale una tantum, vedi `docs/DEPLOYMENT.md`). |
+| Scansione automatica dei segreti in CI | ✅ (attiva dal primo push) | `.github/workflows/deploy.yml` esegue `gitleaks` ad ogni push su `main` e blocca la pubblicazione se trova un segreto. Si attiva già da solo — basta l'impostazione una tantum descritta in `docs/DEPLOYMENT-GITHUB.md` (nessuna abilitazione manuale separata su un sito esterno, a differenza di quanto richiedeva Woodpecker su ci.codeberg.org). |
 
 ## 7. Ruoli e permessi
 
@@ -88,7 +88,7 @@ composto esclusivamente da file statici pre-generati in fase di build.
 nel sito stesso (nessun login). L'unico controllo di accesso rilevante è
 **chi ha permesso di scrittura sul repository Git** — questo va gestito
 con gli strumenti della piattaforma di hosting del codice (es. permessi
-collaboratori su Codeberg), non dal sito.
+collaboratori su GitHub), non dal sito.
 
 ## 8. Logging e monitoraggio
 

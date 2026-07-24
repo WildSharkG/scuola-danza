@@ -1,4 +1,30 @@
 /* ==========================================================================
+   Font sui titoli — ATTENZIONE, DA SOSTITUIRE PRIMA DI PUBBLICARE
+   ==========================================================================
+   Questo è il file "the-seasons.woff2" fornito, MA i suoi metadati interni
+   dicono "FSP DEMO - The Seasons Bold": è una demo Fontspring, non la
+   licenza commerciale. Da NON pubblicare su un sito reale finché non si
+   acquista/procura la versione con licenza piena. Solo per anteprima
+   locale (vedi anche la checklist pre-deploy in docs/DEPLOYMENT.md).
+
+   Contiene inoltre solo l'ASCII base (nessuna lettera accentata: à, è, ì,
+   ò, ù...) e un solo peso (Bold/700, nessun corsivo). Per questo è
+   applicato SOLO ai titoli grandi (--font-display), non al corpo testo:
+   su un intero paragrafo in italiano il mix di font per ogni lettera
+   accentata sarebbe molto più vistoso che su un titolo occasionale.
+
+   Quando arriva il file con licenza piena: sostituisci l'url() qui sotto
+   (e/o aggiungi altri pesi con altri blocchi @font-face) e rimuovi questo
+   commento — non serve toccare nient'altro nel CSS. */
+@font-face {
+  font-family: 'The Seasons (demo)';
+  src: url('../fonts/the-seasons.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ==========================================================================
    Design token (estratti dal design di riferimento)
    ========================================================================== */
 :root {
@@ -27,6 +53,12 @@
      niente richieste a server di terze parti: si usano i serif di sistema. */
   --font-serif: 'Cormorant Garamond', 'EB Garamond', Garamond, Georgia, 'Times New Roman', serif;
   --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Font demo (vedi blocco @font-face sopra) usato solo sui titoli grandi:
+     brand/logo testuale, titolo hero, titoli di sezione H2. Il resto del
+     sito resta su --font-serif. Da sostituire quando arriva la licenza
+     piena — basta cambiare questa riga. */
+  --font-display: 'The Seasons (demo)', var(--font-serif);
 
   /* spaziature */
   --header-h: 64px;
@@ -122,7 +154,7 @@ img {
   align-items: center;
   gap: 8px;
   flex: none;
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-weight: 600;
   font-size: 20px;
   color: var(--accent-strong);
@@ -261,7 +293,7 @@ img {
 }
 
 .hero__title {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-weight: 600;
   font-style: italic;
   font-size: 46px;
@@ -343,7 +375,7 @@ img {
 }
 
 .section-header__title {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-weight: 600;
   font-size: 29px;
   margin: 0 0 10px;

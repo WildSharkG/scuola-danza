@@ -1,4 +1,8 @@
-baseURL = "https://fukuroo.codeberg.page/scuola-danza/"
+# Sostituisci "TUO-UTENTE" col nome utente/organizzazione GitHub reale.
+# Se il repository si chiama esattamente "TUO-UTENTE.github.io", il sito
+# è servito alla radice: usa "https://TUO-UTENTE.github.io/" invece
+# (vedi docs/DEPLOYMENT-GITHUB.md Parte A.2).
+baseURL = "https://TUO-UTENTE.github.io/scuola-danza/"
 locale = "it_IT"
 title = "A un passo dal sogno"
 

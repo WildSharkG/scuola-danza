@@ -2,11 +2,11 @@
 # Hugo copia questo file così com'è in public/_headers durante la build.
 #
 # Funziona SOLO su host che supportano questo formato (Netlify, Cloudflare
-# Pages). Codeberg Pages e GitHub Pages, ad esempio, NON leggono questo
-# file: servono file statici senza permettere di impostare header custom.
-# Se il sito finisce su uno di questi host, vedi docs/DEPLOYMENT.md per le
-# alternative (self-hosting con Nginx/IIS, oppure un CDN/proxy davanti che
-# possa iniettare gli header).
+# Pages). GitHub Pages, l'host scelto per questo progetto, NON legge
+# questo file: serve solo file statici senza permettere di impostare
+# header custom. Vedi docs/DEPLOYMENT.md §2 per le alternative
+# (self-hosting con Nginx/IIS, oppure un CDN/proxy davanti che possa
+# iniettare gli header).
 
 /*
   Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests

@@ -129,13 +129,18 @@ zero — non serve rilanciarlo quando arriva il logo reale.
 
 - **Contatti reali**: vedi sopra, `data/contatti.yaml` ha ancora
   segnaposto.
-- **Hosting**: non ancora deciso. Influisce su `baseURL` in `hugo.toml`
-  (da aggiornare con il dominio reale) e su come collegare eventualmente
-  un CMS per l'editing (vedi punto sotto).
-- **CMS per editing da browser (Decap CMS)**: valutato per Codeberg, ma
-  non ancora collegato — l'editing oggi avviene modificando i file
-  direttamente (via Git/Codeberg web editor o altro). Non è indispensabile
-  per iniziare: la struttura dati è già pensata per essere compatibile.
+- **Hosting**: deciso — GitHub Pages, pubblicato automaticamente via
+  GitHub Actions ad ogni push su `main` (vedi `docs/DEPLOYMENT-GITHUB.md`).
+  Resta da compilare `baseURL` in `hugo.toml` col nome utente/
+  organizzazione GitHub reale, e in seguito col dominio definitivo se e
+  quando la scuola ne avrà uno.
+- **CMS per editing da browser (Decap CMS)**: non ancora collegato —
+  l'editing oggi avviene modificando i file direttamente (via GitHub web
+  editor o Git). Non è indispensabile per iniziare: la struttura dati è
+  già pensata per essere compatibile. GitHub è tra i backend più maturi e
+  meglio documentati per Decap CMS, quindi collegarlo in futuro
+  richiederebbe solo configurazione, non un adattamento della struttura
+  dati.
 - **Font**: il CSS usa i font serif già installati sul dispositivo
   dell'utente (nessuna richiesta a Google Fonts, per restare senza
   terze parti). Se in futuro si vuole il font "Cormorant Garamond"
