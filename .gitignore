@@ -20,6 +20,6 @@ Thumbs.db
 *.p12
 *.pfx
 secrets/
-docs/
+/docs/
 CLAUDE.md
 README.md
