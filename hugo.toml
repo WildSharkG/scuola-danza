@@ -2,7 +2,7 @@
 # Se il repository si chiama esattamente "TUO-UTENTE.github.io", il sito
 # è servito alla radice: usa "https://TUO-UTENTE.github.io/" invece
 # (vedi docs/DEPLOYMENT-GITHUB.md Parte A.2).
-baseURL = "https://TUO-UTENTE.github.io/scuola-danza/"
+baseURL = "https://wildsharkg.github.io/scuola-danza/"
 locale = "it_IT"
 title = "A un passo dal sogno"
 
