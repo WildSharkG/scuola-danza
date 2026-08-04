@@ -23,3 +23,8 @@ secrets/
 /docs/
 CLAUDE.md
 README.md
+
+# Font demo Fontspring non licenziato ("FSP DEMO - The Seasons Bold"):
+# utilizzabile solo per prova locale, mai da pubblicare. Il file può restare
+# su disco per test personali ma non deve più essere tracciato da git.
+static/fonts/the-seasons.woff2
