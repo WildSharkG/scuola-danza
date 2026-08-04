@@ -16,7 +16,7 @@
   ordine: 1
   visibile: true
 
-- nome: "Danza classica"
+- nome: "Danza classica (Metodo Royal Academy of Dance)"
   gruppo: "bambini-ragazzi"
   eta: "Dai 5 anni"
   descrizione: ""
@@ -30,9 +30,9 @@
   ordine: 3
   visibile: true
 
-- nome: "Danza classica e moderna"
+- nome: "Reggaeton"
   gruppo: "bambini-ragazzi"
-  eta: "Adulti e principianti"
+  eta: "Dai 7 anni"
   descrizione: ""
   ordine: 4
   visibile: true

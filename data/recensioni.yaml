@@ -2,20 +2,20 @@
 # ordine: più basso = più a sinistra/in alto.
 # visibile: true/false per mostrare o nascondere una recensione.
 
-- nome: "Chiara R."
-  ruolo: "mamma di un'allieva"
-  testo: "Mia figlia aspetta la lezione di danza classica tutta la settimana. Le insegnanti sono pazienti e la scuola è come una seconda casa."
+- nome: "Nome"
+  ruolo: "Mamma di un'allieva"
+  testo: "TESTO"
   ordine: 1
   visibile: true
 
-- nome: "Marco T."
+- nome: "Nome"
   ruolo: "allievo adulto"
-  testo: "Ho iniziato pilates a 45 anni senza aver mai fatto danza. Ambiente accogliente, zero giudizio, solo tanta energia buona."
+  testo: "TESTO"
   ordine: 2
   visibile: true
 
-- nome: "Giulia F."
+- nome: "Nome"
   ruolo: "allieva adulta"
-  testo: "La danza moderna qui è diventata la mia valvola di sfogo preferita dopo il lavoro. Consiglio la scuola a chiunque cerchi leggerezza."
+  testo: "TESTO"
   ordine: 3
   visibile: true
