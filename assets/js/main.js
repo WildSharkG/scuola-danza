@@ -6,7 +6,6 @@
  *  - parallax leggero sull'immagine dell'hero
  *  - fade-in delle sezioni allo scroll (IntersectionObserver)
  *  - contatori animati in "Chi siamo"
- *  - mappa "click-to-load" (niente richieste a Google finché non richiesto)
  */
 (function () {
   "use strict";
@@ -133,17 +132,4 @@
     }
   }
 
-  /* ---------- Mappa "click-to-load" ---------- */
-  document.querySelectorAll("[data-mappa-src]").forEach(function (bottone) {
-    bottone.addEventListener("click", function () {
-      var src = bottone.getAttribute("data-mappa-src");
-      if (!src) return;
-      var iframe = document.createElement("iframe");
-      iframe.src = src;
-      iframe.loading = "lazy";
-      iframe.referrerPolicy = "no-referrer-when-downgrade";
-      iframe.setAttribute("title", "Mappa della sede");
-      bottone.replaceWith(iframe);
-    });
-  });
 })();

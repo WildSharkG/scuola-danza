@@ -1,0 +1,6 @@
+<div class="frequenza-card">
+  <span class="frequenza-card__nome">{{ .nome }}</span>
+  {{ with .volte }}
+  <span class="frequenza-card__volte">{{ . }} {{ if eq . 1 }}volta{{ else }}volte{{ end }} a settimana</span>
+  {{ end }}
+</div>

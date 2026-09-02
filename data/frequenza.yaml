@@ -1,0 +1,73 @@
+# Quante volte a settimana viene svolto ogni corso.
+# Per aggiungere/togliere un corso, aggiungi o rimuovi una voce sotto.
+#
+# Campi:
+#   nome      - testo, obbligatorio (nome del corso, con eventuale fascia d'età tra parentesi)
+#   volte     - numero di lezioni a settimana. Facoltativo: omettilo (o cancella
+#               la riga) per un corso di cui non si indica la frequenza.
+#   ordine    - numero: più basso = più in alto nell'elenco
+#   visibile  - true per mostrarlo, false per nasconderlo senza cancellarlo
+
+- nome: "Danzatricità"
+  volte: 1
+  ordine: 1
+  visibile: true
+
+- nome: "Piccoli esploratori (3 anni)"
+  volte: 2
+  ordine: 2
+  visibile: true
+
+- nome: "ABC Danza (4 anni)"
+  volte: 2
+  ordine: 3
+  visibile: true
+
+- nome: "Primary classico (dai 5 anni)"
+  volte: 2
+  ordine: 4
+  visibile: true
+
+- nome: "Classico 1 (dagli 8 anni)"
+  volte: 2
+  ordine: 5
+  visibile: true
+
+- nome: "Classico adulti"
+  volte: 2
+  ordine: 6
+  visibile: true
+
+- nome: "Moderno mini (dai 5 anni)"
+  volte: 1
+  ordine: 7
+  visibile: true
+
+- nome: "Moderno junior (dagli 8 anni)"
+  volte: 2
+  ordine: 8
+  visibile: true
+
+- nome: "Moderno adulti"
+  volte: 1
+  ordine: 9
+  visibile: true
+
+- nome: "Balli di gruppo"
+  volte: 2
+  ordine: 10
+  visibile: true
+
+- nome: "Reggaeton"
+  volte: 2
+  ordine: 11
+  visibile: true
+
+- nome: "Pilates"
+  volte: 2
+  ordine: 12
+  visibile: true
+
+- nome: "Lezioni private"
+  ordine: 13
+  visibile: true

@@ -28,3 +28,8 @@ README.md
 # utilizzabile solo per prova locale, mai da pubblicare. Il file può restare
 # su disco per test personali ma non deve più essere tracciato da git.
 static/fonts/the-seasons.woff2
+
+# Decap CMS: pannello /admin ancora in valutazione (manca il proxy OAuth,
+# manca config.yml). Resta su disco per continuare a lavorarci in locale,
+# ma non va pubblicato finché non si decide consapevolmente di attivarlo.
+/static/admin/

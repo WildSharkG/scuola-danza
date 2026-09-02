@@ -13,7 +13,7 @@
           <span class="contatti-testo">{{ $c.email }}</span>
         </a>
         {{ with $c.whatsapp }}
-        <a href="https://wa.me/{{ .numero }}?text={{ replace .messaggio " " "%20" }}" class="contatti-riga" target="_blank" rel="noopener">
+        <a href="https://wa.me/{{ .numero }}?text={{ .messaggio }}" class="contatti-riga" target="_blank" rel="noopener">
           <span class="contatti-icona">WA</span>
           <span class="contatti-testo">Scrivici su WhatsApp</span>
         </a>

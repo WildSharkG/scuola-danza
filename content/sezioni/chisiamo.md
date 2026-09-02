@@ -8,4 +8,4 @@ attivo: true
 build:
   render: never
 ---
-Una scuola familiare dove ogni allievo, dai 5 agli 80 anni, trova il proprio ritmo.
+Un ambiente accogliente dove ogni allievo, dai primi mesi ai 99 anni, diventa parte di una grande famiglia.

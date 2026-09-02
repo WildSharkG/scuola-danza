@@ -1,0 +1,9 @@
+<section class="section" id="frequenza">
+  <div class="section__inner">
+    {{ partial "section-header.html" . }}
+    {{ $corsi := sort (where hugo.Data.frequenza "visibile" true) "ordine" }}
+    <div class="frequenza-grid" data-reveal>
+      {{ range $corsi }}{{ partial "components/corso-frequenza.html" . }}{{ end }}
+    </div>
+  </div>
+</section>

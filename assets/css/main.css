@@ -16,11 +16,6 @@
   --card-bg: #fff;
   --border-soft: oklch(0.9 0.02 240);
 
-  /* placeholder "foto" (righe diagonali, come nel design) */
-  --ph-a: oklch(0.88 0.05 240);
-  --ph-b: oklch(0.93 0.03 240);
-  --ph-label: oklch(0.46 0.06 240);
-
   /* tipografia. "Cormorant Garamond" resta primo in lista: se un domani si
      deciderà di auto-ospitare il webfont reale, basterà aggiungere le
      regole @font-face qui sopra senza toccare il resto del CSS. Per ora,
@@ -90,21 +85,13 @@ img {
   left: 0;
   right: 0;
   z-index: 50;
-  background: transparent;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
+  background: oklch(0.98 0.008 240 / 0.92);
+  backdrop-filter: blur(8px);
+  transition: box-shadow 0.3s ease;
 }
 
 .site-header.is-scrolled {
-  background: oklch(0.98 0.008 240 / 0.92);
-  backdrop-filter: blur(8px);
   box-shadow: 0 2px 16px var(--shadow-color);
-}
-
-@media (min-width: 900px) {
-  .site-header {
-    background: oklch(0.98 0.008 240 / 0.92);
-    backdrop-filter: blur(8px);
-  }
 }
 
 .site-header__inner {
@@ -136,6 +123,25 @@ img {
 
 .brand__mark {
   border-radius: 0%;
+}
+
+@media (max-width: 899px) {
+  /* Riga più alta per lasciare spazio al brand__text su due righe, invece
+     di farlo traboccare o accavallarsi al bottone del menu. */
+  :root {
+    --header-h: 88px;
+  }
+
+  .brand {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .brand__text {
+    min-width: 0;
+    white-space: normal;
+    line-height: 1.15;
+  }
 }
 
 .nav--desktop {
@@ -276,7 +282,8 @@ img {
   font-size: 46px;
   line-height: 1.1;
   margin: 0 0 14px;
-  color: var(--heading);
+  color: #fff;
+  text-shadow: 0 2px 14px oklch(0 0 0 / 0.5);
 }
 
 .hero__subtitle {
@@ -284,7 +291,8 @@ img {
   font-size: 16px;
   font-weight: 600;
   line-height: 1.5;
-  color: var(--text-muted);
+  color: oklch(0.96 0.01 240);
+  text-shadow: 0 1px 10px oklch(0 0 0 / 0.45);
   max-width: 420px;
 }
 
@@ -386,34 +394,8 @@ img {
 }
 
 /* ==========================================================================
-   Placeholder "foto" (righe diagonali) - stessa idea del design originale
-   ========================================================================== */
-.ph-photo {
-  position: relative;
-  overflow: hidden;
-  background: repeating-linear-gradient(115deg, var(--ph-a) 0 16px, var(--ph-b) 16px 32px);
-}
-
-.ph-photo__label {
-  position: absolute;
-  bottom: 10px;
-  left: 14px;
-  font: 10px/1.4 var(--font-mono);
-  color: var(--ph-label);
-  letter-spacing: 0.05em;
-}
-
-/* ==========================================================================
    Corsi / DanzatricitÃ
    ========================================================================== */
-.corsi-gruppo__titolo {
-  font-family: var(--font-serif);
-  font-weight: 600;
-  font-size: 15px;
-  color: var(--accent);
-  margin: 28px 0 12px;
-}
-
 .corsi-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -443,41 +425,37 @@ img {
 }
 
 /* ==========================================================================
-   Orari
+   Frequenza
    ========================================================================== */
-.orari-grid {
+.frequenza-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 16px;
+  gap: 12px;
   margin-top: 32px;
 }
 
-.orario-card {
+.frequenza-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   background: var(--card-bg);
   border-radius: var(--radius-md);
-  padding: 16px 18px;
+  padding: 14px 18px;
   box-shadow: 0 4px 16px var(--shadow-color-soft);
 }
 
-.orario-card__giorno {
-  font-family: var(--font-serif);
-  font-weight: 600;
-  font-size: 16px;
-  color: var(--accent-strong);
-  margin-bottom: 10px;
-}
-
-.orario-card__riga {
-  display: flex;
-  justify-content: space-between;
-  padding: 8px 0;
-  border-top: 1px solid var(--border-soft);
-  font-size: 14px;
-}
-
-.orario-card__ora {
+.frequenza-card__nome {
   font-weight: 700;
-  color: oklch(0.42 0.02 250);
+  font-size: 14px;
+  color: var(--heading);
+}
+
+.frequenza-card__volte {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--accent);
+  white-space: nowrap;
 }
 
 /* ==========================================================================
@@ -611,30 +589,6 @@ img {
   display: block;
 }
 
-.mappa-card__placeholder {
-  width: 100%;
-  height: 180px;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
-}
-
-.mappa-card__cta {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  background: var(--accent);
-  color: #fff;
-  font-family: var(--font-serif);
-  font-weight: 600;
-  font-size: 13px;
-  padding: 8px 16px;
-  border-radius: var(--radius-pill);
-}
-
 .mappa-card iframe {
   width: 100%;
   height: 180px;
@@ -652,11 +606,17 @@ img {
   color: var(--heading);
 }
 
-.mappa-card__hint {
+.mappa-card__video-link {
+  display: inline-block;
+  margin-top: 6px;
   font-size: 12px;
-  color: var(--accent);
   font-weight: 700;
-  margin-top: 2px;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.mappa-card__video-link:hover {
+  text-decoration: underline;
 }
 
 /* ==========================================================================

@@ -1,21 +1,35 @@
 # Recensioni/testimonianze scritte a mano dalla scuola.
 # ordine: più basso = più a sinistra/in alto.
 # visibile: true/false per mostrare o nascondere una recensione.
+# ruolo: facoltativo (lascia "" o cancella la riga per non mostrarlo,
+#        utile per recensioni firmate da un gruppo invece che da una persona).
 
-- nome: "Nome"
-  ruolo: "Mamma di un'allieva"
-  testo: "TESTO"
+- nome: "Le mamme di ABC Danza"
+  ruolo: ""
+  testo: "Grazie Maestra Maria per aver accompagnato le nostre bambine in questo bellissimo percorso e averci insegnato quanto la nostra presenza e costanza sia per loro una guida ❤️"
   ordine: 1
   visibile: true
 
-- nome: "Nome"
-  ruolo: "allievo adulto"
-  testo: "TESTO"
+- nome: "M."
+  ruolo: "Mamma di E., 4 anni"
+  testo: "Vederla sicura e sorridente su quel palco dimostra la tua bravura e professionalità. Non è una bimba \"facile\", ma tu sei riuscita a tirar fuori un po' del suo carattere e del suo coraggio. Se continuerà ad amare la danza, sarà per merito esclusivamente tuo. La sua sicurezza, fiducia e sorriso sul palco sono esclusivamente merito tuo ❤️"
   ordine: 2
   visibile: true
 
-- nome: "Nome"
-  ruolo: "allieva adulta"
-  testo: "TESTO"
+- nome: "V."
+  ruolo: "Mamma di C., 3 anni"
+  testo: "Mari, veramente grazie: mi sono emozionata tanto, sono state bravissime. Per essere bambine di 3 anni sono state veramente, veramente brave. Poi, anche a vederla sempre timida con gli altri, è stata bravissima ed espressiva anche lei... sono davvero davvero felice, e le coreografie bellissime!"
   ordine: 3
+  visibile: true
+
+- nome: "M."
+  ruolo: "Mamma di G., 4 anni"
+  testo: "Un grazie speciale va a Maria, una persona e un'insegnante incredibile, profonda, autentica e impeccabile. È stato emozionante vederle in sala, giocare, impegnarsi e scoprire cose nuove insieme. Quell'entusiasmo che portano è un'emozione unica, difficile da spiegare a parole."
+  ordine: 4
+  visibile: true
+
+- nome: "C."
+  ruolo: "Mamma di S., 5 anni"
+  testo: "Ringrazio tantissimo la maestra Maria per la pazienza, l'umiltà e l'estrema professionalità: ha saputo coinvolgere, motivare e appassionare le bambine, e la prova dell'amore per la danza nato in loro è la volontà di voler continuare anche l'anno prossimo! Grazie."
+  ordine: 5
   visibile: true
