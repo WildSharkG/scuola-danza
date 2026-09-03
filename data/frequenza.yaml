@@ -54,20 +54,25 @@
   visibile: true
 
 - nome: "Balli di gruppo"
-  volte: 2
+  volte: 1
   ordine: 10
   visibile: true
 
 - nome: "Reggaeton"
-  volte: 2
+  volte: 1
   ordine: 11
+  visibile: true
+
+- nome: "Caraibico"
+  volte: 1
+  ordine: 12
   visibile: true
 
 - nome: "Pilates"
   volte: 2
-  ordine: 12
+  ordine: 13
   visibile: true
 
 - nome: "Lezioni private"
-  ordine: 13
+  ordine: 14
   visibile: true

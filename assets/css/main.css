@@ -414,6 +414,7 @@ img {
 .corso-card__nome {
   font-weight: 800;
   font-size: 15px;
+  white-space: pre-line;
 }
 
 .corso-card__eta,
@@ -486,6 +487,33 @@ img {
   font-weight: 700;
   color: var(--text-muted);
   margin-top: 4px;
+}
+
+.certificazioni-titolo {
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border-soft);
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--text-muted);
+}
+
+.certificazioni-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  margin-top: 20px;
+}
+
+.certificazioni-logo {
+  height: 100px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
 }
 
 /* ==========================================================================

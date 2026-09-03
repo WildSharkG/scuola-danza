@@ -1,0 +1,14 @@
+Metti in questa cartella i loghi delle certificazioni (formati accettati:
+png, jpg, jpeg, webp, svg, gif). Compariranno da soli nella sezione
+"Perché scegliere noi" del sito, senza bisogno di modificare altri file.
+
+Ordine di visualizzazione: alfabetico per nome del file. Per un ordine
+preciso, rinomina i file con un numero davanti, es.:
+  01-royal-academy-of-dance.png
+  02-cecchetti.png
+
+Il testo alternativo (per l'accessibilità) viene generato automaticamente
+dal nome del file: usa nomi leggibili, con trattini al posto degli spazi
+(es. "royal-academy-of-dance.png" diventa "royal academy of dance").
+
+Questo file (LEGGIMI.txt) non verrà mai mostrato sul sito.

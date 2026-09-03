@@ -2,7 +2,8 @@
 # I corsi di DanzatricitÃ  hanno una loro collection separata: data/danzatricita.yaml
 #
 # Campi:
-#   nome        - testo, obbligatorio
+#   nome        - testo, obbligatorio. Per andare a capo in un punto preciso,
+#                 inserisci "\n" dove vuoi che il testo si spezzi.
 #   eta         - testo libero, facoltativo (es. "Dai 5 anni"). Lascia "" se non serve.
 #   descrizione - testo libero, facoltativo, una riga breve.
 #   ordine      - numero: più basso = più in alto nell'elenco
@@ -14,32 +15,38 @@
   ordine: 1
   visibile: true
 
-- nome: "Danza classica (Metodo Royal Academy of Dance)"
+- nome: "Danza classica\n(Metodo Royal Academy of Dance)"
   eta: "Dai 5 anni"
   descrizione: "Possibilità di esami di livello"
   ordine: 2
   visibile: true
 
-- nome: "Danza moderna (contemporary modern)"
+- nome: "Danza moderna\n(contemporary modern)"
   eta: "Dai 5 anni"
   descrizione: "Possibilità di esami di livello"
   ordine: 3
   visibile: true
 
 - nome: "Reggaeton"
-  eta: "Dai 7 anni"
+  eta: "Dai 10 anni"
   descrizione: ""
   ordine: 4
+  visibile: true
+
+- nome: "Caraibici"
+  eta: "Dagli 8 anni"
+  descrizione: ""
+  ordine: 5
   visibile: true
 
 - nome: "Balli di gruppo"
   eta: "Per tutti"
   descrizione: ""
-  ordine: 5
+  ordine: 6
   visibile: true
 
 - nome: "Pilates"
   eta: ""
   descrizione: "Pilates clinico a cura di una fisioterapista"
-  ordine: 6
+  ordine: 7
   visibile: true
