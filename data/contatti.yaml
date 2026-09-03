@@ -25,4 +25,4 @@ mappa_embed_src: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1065.934
 # Link a un video (es. Reel/post Instagram) con le indicazioni per
 # arrivare a piedi/in auto. Incolla qui l'URL del post; lascia vuoto
 # per non mostrare il link sotto la mappa.
-video_indicazioni: ""
+video_indicazioni: "https://www.instagram.com/reel/DVyC0irjslz/"
