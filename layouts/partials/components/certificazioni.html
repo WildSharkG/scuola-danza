@@ -1,27 +1,42 @@
-{{/* Mostra automaticamente tutti i loghi presenti in static/img/certificazioni/:
-     non serve modificare nessun file, basta trascinare l'immagine in quella
-     cartella. Ordine: alfabetico per nome file — per un ordine preciso,
-     rinomina i file con un numero davanti (es. "01-rad.png", "02-cecchetti.png"). */}}
+{{/* Mostra i loghi delle certificazioni raggruppati in righe: ogni
+     sottocartella dentro static/img/certificazioni/ diventa una riga a sé
+     stante, una sopra l'altra. Le sottocartelle sono ordinate
+     alfabeticamente per nome (es. "gruppo-1", "gruppo-2", ...), e dentro
+     ognuna i loghi sono in ordine alfabetico per nome file — per un ordine
+     preciso, rinomina i file con un numero davanti (es. "01-rad.png"). */}}
 {{ $cartella := "static/img/certificazioni" }}
 {{ if os.FileExists $cartella }}
   {{ $estensioni := slice ".png" ".jpg" ".jpeg" ".webp" ".svg" ".gif" }}
-  {{ $loghi := slice }}
+  {{ $righe := slice }}
   {{ range os.ReadDir $cartella }}
-    {{ $ext := path.Ext .Name | lower }}
-    {{ if in $estensioni $ext }}
-      {{ $loghi = $loghi | append .Name }}
+    {{ if .IsDir }}
+      {{ $nomeGruppo := .Name }}
+      {{ $percorsoGruppo := printf "%s/%s" $cartella $nomeGruppo }}
+      {{ $loghi := slice }}
+      {{ range os.ReadDir $percorsoGruppo }}
+        {{ $ext := path.Ext .Name | lower }}
+        {{ if in $estensioni $ext }}
+          {{ $loghi = $loghi | append .Name }}
+        {{ end }}
+      {{ end }}
+      {{ if $loghi }}
+        {{ $righe = $righe | append (dict "cartella" $nomeGruppo "loghi" $loghi) }}
+      {{ end }}
     {{ end }}
   {{ end }}
-  {{ if $loghi }}
+  {{ if $righe }}
     <div class="certificazioni-titolo">Tutti i nostri insegnanti sono rigorosamente certificati</div>
-    <div class="certificazioni-row" data-reveal>
-      {{ range $loghi }}
-        {{ $etichetta := strings.TrimSuffix (path.Ext .) . }}
-        {{ $etichetta = replaceRE "^[0-9]+[-_]*" "" $etichetta }}
-        {{ $etichetta = replace $etichetta "-" " " }}
-        {{ $etichetta = replace $etichetta "_" " " }}
-        <img class="certificazioni-logo" src="{{ printf "img/certificazioni/%s" . | relURL }}" alt="{{ $etichetta }}" loading="lazy">
-      {{ end }}
-    </div>
+    {{ range $righe }}
+      {{ $nomeGruppo := .cartella }}
+      <div class="certificazioni-row" data-reveal>
+        {{ range .loghi }}
+          {{ $etichetta := strings.TrimSuffix (path.Ext .) . }}
+          {{ $etichetta = replaceRE "^[0-9]+[-_]*" "" $etichetta }}
+          {{ $etichetta = replace $etichetta "-" " " }}
+          {{ $etichetta = replace $etichetta "_" " " }}
+          <img class="certificazioni-logo" src="{{ printf "img/certificazioni/%s/%s" $nomeGruppo . | relURL }}" alt="{{ $etichetta }}" loading="lazy">
+        {{ end }}
+      </div>
+    {{ end }}
   {{ end }}
 {{ end }}

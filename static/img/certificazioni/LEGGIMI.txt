@@ -1,14 +1,22 @@
-Metti in questa cartella i loghi delle certificazioni (formati accettati:
-png, jpg, jpeg, webp, svg, gif). Compariranno da soli nella sezione
-"Perché scegliere noi" del sito, senza bisogno di modificare altri file.
+I loghi sono organizzati in gruppi: ogni gruppo è una sottocartella
+(gruppo-1, gruppo-2, gruppo-3, gruppo-4) e diventa una riga a sé sul
+sito, una sopra l'altra nello stesso ordine (gruppo-1 in alto).
 
-Ordine di visualizzazione: alfabetico per nome del file. Per un ordine
-preciso, rinomina i file con un numero davanti, es.:
+Per aggiungere un logo: mettilo dentro la sottocartella del gruppo giusto.
+Formati accettati: png, jpg, jpeg, webp, svg, gif.
+
+Dentro ogni gruppo, l'ordine dei loghi è alfabetico per nome del file.
+Per un ordine preciso, rinomina i file con un numero davanti, es.:
   01-royal-academy-of-dance.png
   02-cecchetti.png
 
 Il testo alternativo (per l'accessibilità) viene generato automaticamente
 dal nome del file: usa nomi leggibili, con trattini al posto degli spazi
-(es. "royal-academy-of-dance.png" diventa "royal academy of dance").
+(es. "royal-academy-of-dance.png" diventa "royal academy of dance"); un
+eventuale numero davanti al nome (usato solo per l'ordine) viene tolto
+automaticamente dal testo alternativo.
+
+Un gruppo senza immagini non mostra nessuna riga vuota: si può lasciare
+una sottocartella vuota senza problemi.
 
 Questo file (LEGGIMI.txt) non verrà mai mostrato sul sito.

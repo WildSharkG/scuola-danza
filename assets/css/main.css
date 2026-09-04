@@ -1,4 +1,28 @@
 /* ==========================================================================
+   Font — Cormorant Garamond (Google Fonts, licenza SIL Open Font License).
+   Auto-ospitato in static/fonts/: nessuna richiesta a server di terze parti
+   in visita, coerente con la scelta fatta per il resto del sito. Il file
+   "normal" è un font variabile (un solo file copre tutti i pesi 400-700,
+   esattamente come lo serve Google Fonts stesso); serve un file separato
+   solo per il corsivo, usato oggi soltanto sul titolo della hero.
+   ========================================================================== */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('../fonts/cormorant-garamond-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../fonts/cormorant-garamond-italic-600.woff2') format('woff2');
+}
+
+/* ==========================================================================
    Design token (estratti dal design di riferimento)
    ========================================================================== */
 :root {
@@ -16,10 +40,9 @@
   --card-bg: #fff;
   --border-soft: oklch(0.9 0.02 240);
 
-  /* tipografia. "Cormorant Garamond" resta primo in lista: se un domani si
-     deciderà di auto-ospitare il webfont reale, basterà aggiungere le
-     regole @font-face qui sopra senza toccare il resto del CSS. Per ora,
-     niente richieste a server di terze parti: si usano i serif di sistema. */
+  /* tipografia. "Cormorant Garamond" è auto-ospitato (vedi @font-face sopra);
+     il resto della lista è il fallback nel raro caso in cui il font non
+     riesca a caricare. */
   --font-serif: 'Cormorant Garamond', 'EB Garamond', Garamond, Georgia, 'Times New Roman', serif;
   --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
 
@@ -117,7 +140,7 @@ img {
   flex: none;
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 20px;
+  font-size: 27px;
   color: var(--accent-strong);
 }
 
@@ -161,13 +184,14 @@ img {
 
 .nav__link {
   font-family: var(--font-serif);
-  font-weight: 600;
-  font-size: 16px;
+  font-weight: 500;
+  font-size: 21px;
   color: var(--text);
 }
 
 .nav--desktop .nav__link:last-child {
-  font-size: 15px;
+  font-weight: 600;
+  font-size: 20px;
   color: #fff;
   background: var(--accent);
   padding: 10px 22px;
@@ -233,7 +257,7 @@ img {
 }
 
 .nav__link--mobile {
-  font-size: 20px;
+  font-size: 27px;
   padding: 14px 24px;
   border-bottom: 1px solid var(--border-soft);
 }
@@ -279,7 +303,7 @@ img {
   font-family: var(--font-display);
   font-weight: 600;
   font-style: italic;
-  font-size: 46px;
+  font-size: 58px;
   line-height: 1.1;
   margin: 0 0 14px;
   color: #fff;
@@ -288,8 +312,8 @@ img {
 
 .hero__subtitle {
   margin: 0 0 26px;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 21px;
+  font-weight: 500;
   line-height: 1.5;
   color: oklch(0.96 0.01 240);
   text-shadow: 0 1px 10px oklch(0 0 0 / 0.45);
@@ -311,8 +335,8 @@ img {
   min-width: 180px;
   text-align: center;
   font-family: var(--font-serif);
-  font-weight: 600;
-  font-size: 15px;
+  font-weight: 700;
+  font-size: 20px;
   border-radius: var(--radius-pill);
   padding: 15px;
 }
@@ -353,7 +377,7 @@ img {
 }
 
 .section-header__eyebrow {
-  font: 11px/1 var(--font-mono);
+  font: 16px/1 var(--font-mono);
   letter-spacing: 0.08em;
   color: var(--accent);
   margin-bottom: 10px;
@@ -362,7 +386,7 @@ img {
 .section-header__title {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 29px;
+  font-size: 38px;
   margin: 0 0 10px;
   color: var(--heading);
   text-transform: uppercase;
@@ -370,7 +394,7 @@ img {
 }
 
 .section-header__text {
-  font-size: 15px;
+  font-size: 20px;
   line-height: 1.6;
   color: var(--text-muted);
 }
@@ -412,15 +436,15 @@ img {
 }
 
 .corso-card__nome {
-  font-weight: 800;
-  font-size: 15px;
+  font-weight: 600;
+  font-size: 20px;
   white-space: pre-line;
 }
 
 .corso-card__eta,
 .corso-card__descrizione {
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 17px;
+  font-weight: 500;
   color: var(--accent);
   margin-top: 3px;
 }
@@ -447,14 +471,14 @@ img {
 }
 
 .frequenza-card__nome {
-  font-weight: 700;
-  font-size: 14px;
+  font-weight: 600;
+  font-size: 19px;
   color: var(--heading);
 }
 
 .frequenza-card__volte {
-  font-weight: 700;
-  font-size: 13px;
+  font-weight: 500;
+  font-size: 18px;
   color: var(--accent);
   white-space: nowrap;
 }
@@ -478,13 +502,13 @@ img {
 .contatore__numero {
   font-family: var(--font-serif);
   font-weight: 700;
-  font-size: 34px;
+  font-size: 45px;
   color: var(--accent);
 }
 
 .contatore__etichetta {
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 17px;
+  font-weight: 500;
   color: var(--text-muted);
   margin-top: 4px;
 }
@@ -494,8 +518,8 @@ img {
   padding-top: 32px;
   border-top: 1px solid var(--border-soft);
   text-align: center;
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 17px;
+  font-weight: 500;
   letter-spacing: 0.03em;
   color: var(--text-muted);
 }
@@ -534,7 +558,7 @@ img {
 }
 
 .recensione-card__testo {
-  font-size: 14px;
+  font-size: 19px;
   line-height: 1.6;
   color: oklch(0.36 0.03 250);
   font-style: italic;
@@ -544,7 +568,7 @@ img {
   margin-top: 14px;
   font-family: var(--font-serif);
   font-weight: 600;
-  font-size: 14px;
+  font-size: 19px;
   color: var(--accent);
 }
 
@@ -586,8 +610,8 @@ img {
 }
 
 .contatti-icona {
-  width: 38px;
-  height: 38px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background: oklch(0.92 0.04 240);
   display: flex;
@@ -595,21 +619,21 @@ img {
   justify-content: center;
   font-family: var(--font-serif);
   font-weight: 600;
-  font-size: 12px;
+  font-size: 15px;
   color: var(--accent);
   flex: none;
 }
 
 .contatti-testo {
-  font-weight: 700;
-  font-size: 15px;
+  font-weight: 500;
+  font-size: 20px;
 }
 
 .contatti-social {
   display: flex;
   gap: 16px;
-  font-weight: 700;
-  font-size: 15px;
+  font-weight: 500;
+  font-size: 20px;
 }
 
 .mappa-card {
@@ -629,16 +653,16 @@ img {
 }
 
 .mappa-card__indirizzo {
-  font-weight: 800;
-  font-size: 14px;
+  font-weight: 600;
+  font-size: 19px;
   color: var(--heading);
 }
 
 .mappa-card__video-link {
   display: inline-block;
   margin-top: 6px;
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 17px;
+  font-weight: 500;
   color: var(--accent);
   text-decoration: none;
 }
@@ -659,12 +683,12 @@ img {
 .site-footer__brand {
   font-family: var(--font-serif);
   font-weight: 600;
-  font-size: 16px;
+  font-size: 21px;
   color: var(--accent-strong);
   margin-bottom: 6px;
 }
 
 .site-footer__copy {
-  font-size: 12px;
+  font-size: 17px;
   color: oklch(0.52 0.02 250);
 }
