@@ -212,15 +212,20 @@ img {
        (essendo panoramica dentro un riquadro stretto), quindi c'è già un
        margine su cui scorrere senza bisogno di zoom: basta animare
        "object-position" da un bordo all'altro. Nessun rischio di scoprire
-       spazio vuoto: il browser mantiene sempre un ritaglio valido. */
-    animation: hero-pan-mobile 30s ease-in-out infinite alternate;
+       spazio vuoto: il browser mantiene sempre un ritaglio valido.
+       "alternate" fa fare va-e-vieni (0%→100%→0%→100%...). Il ritardo
+       negativo fa partire il primo tratto già al 60% (verso il 100%)
+       invece che da 0%, senza toccare la durata dei tratti successivi
+       (interi, 30s ciascuno). */
+    animation: hero-pan-mobile 30s linear infinite alternate;
+    animation-delay: -18s;
   }
 
   @keyframes hero-pan-mobile {
-    from {
+    0% {
       object-position: 0% center;
     }
-    to {
+    100% {
       object-position: 100% center;
     }
   }
