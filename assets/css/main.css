@@ -707,23 +707,44 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-serif);
-  font-weight: 600;
-  font-size: 15px;
   color: var(--accent);
   flex: none;
 }
 
-.contatti-testo {
-  font-weight: 500;
-  font-size: 20px;
+.contatti-icona svg {
+  width: 22px;
+  height: 22px;
 }
 
-.contatti-social {
-  display: flex;
-  gap: 16px;
+.contatti-icona--tel {
+  background: oklch(0.78 0.09 235);
+  color: #fff;
+}
+
+.contatti-icona--whatsapp {
+  background: #25d366;
+  color: #fff;
+}
+
+.contatti-icona--instagram {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+  color: #fff;
+}
+
+.contatti-icona--facebook {
+  background: #1877f2;
+  color: #fff;
+}
+
+.contatti-testo {
+  flex: 1;
   font-weight: 500;
   font-size: 20px;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent 100%);
+  mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent 100%);
 }
 
 .mappa-card {
