@@ -23,6 +23,29 @@
 }
 
 /* ==========================================================================
+   Font — Playfair Display (Google Fonts, licenza SIL Open Font License).
+   Alternativa auto-ospitata per il font dei titoli grandi (vedi la variabile
+   --font-display più sotto). Non è pensato per il corpo del testo: ha un
+   contrasto molto marcato tra i tratti, pensato per titoli, non per la
+   lettura prolungata di paragrafi.
+   ========================================================================== */
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../fonts/playfair-display-600.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../fonts/playfair-display-italic-600.woff2') format('woff2');
+}
+
+/* ==========================================================================
    Design token (estratti dal design di riferimento)
    ========================================================================== */
 :root {
@@ -47,10 +70,16 @@
   --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
 
   /* Font per i titoli grandi (brand/logo testuale, titolo hero, titoli di
-     sezione H2). Oggi coincide col serif di sistema: se in futuro arriva
-     un webfont con licenza piena, basta cambiare questa riga (aggiungendo
-     il relativo blocco @font-face) senza toccare i selettori sotto. */
-  --font-display: var(--font-serif);
+     sezione H2) — indipendente dal font del corpo del testo (--font-serif).
+     Per cambiarlo basta riscrivere QUESTA riga, nessun'altra modifica
+     necessaria altrove. Opzioni già pronte (vedi i blocchi @font-face qui
+     sopra):
+       'Cormorant Garamond', var(--font-serif)   → stesso font del corpo testo
+       'Playfair Display', var(--font-serif)     → più deciso/contrastato
+     Per aggiungere un font nuovo in futuro: metti il file .woff2 in
+     static/fonts/, aggiungi un blocco @font-face sul modello di quelli
+     sopra, poi scrivi qui il nome scelto al posto di uno dei due. */
+  --font-display: 'Playfair Display', var(--font-serif);
 
   /* spaziature */
   --header-h: 64px;
