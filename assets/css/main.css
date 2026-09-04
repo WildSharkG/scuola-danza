@@ -299,6 +299,7 @@ img {
   height: 640px;
   overflow: hidden;
   padding-top: var(--header-h);
+  background: oklch(0.15 0.02 240);
 }
 
 .hero__bg {
@@ -308,6 +309,7 @@ img {
   height: 780px;
   object-fit: cover;
   object-position: center;
+  transform: scale(1.2);
   will-change: transform;
 }
 
@@ -332,7 +334,7 @@ img {
   font-family: var(--font-display);
   font-weight: 600;
   font-style: italic;
-  font-size: 58px;
+  font-size: clamp(34px, 8vw, 58px);
   line-height: 1.1;
   margin: 0 0 14px;
   color: #fff;
@@ -341,12 +343,12 @@ img {
 
 .hero__subtitle {
   margin: 0 0 26px;
-  font-size: 21px;
+  font-size: clamp(16px, 3.6vw, 21px);
   font-weight: 500;
   line-height: 1.5;
   color: oklch(0.96 0.01 240);
   text-shadow: 0 1px 10px oklch(0 0 0 / 0.45);
-  max-width: 420px;
+  max-width: min(420px, 82vw);
 }
 
 .hero__cta {

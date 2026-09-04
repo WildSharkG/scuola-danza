@@ -21,12 +21,26 @@
     }
   }
 
-  /* ---------- Parallax leggero sull'hero ---------- */
+  /* ---------- Parallax leggero sull'hero (orizzontale) ---------- */
   var heroBg = document.getElementById("hero-bg");
   function aggiornaParallax() {
     if (!heroBg) return;
-    var offset = Math.min(window.scrollY * 0.3, 140);
-    heroBg.style.transform = "translateY(" + offset * -1 + "px)";
+    // Il CSS applica "scale(1.2)" DOPO che il ritaglio (object-fit: cover)
+    // è già stato calcolato sulla dimensione originale (100% x 780px) — così
+    // il ritaglio resta identico all'originale, e lo zoom crea solo il
+    // margine per lo scorrimento (10% per lato, essendo lo zoom del 20%).
+    // "translateX" va scritto PRIMA di "scale" nella stringa: così viene
+    // applicato per ultimo, in px reali non moltiplicati dallo zoom, e il
+    // calcolo del limite (proporzionale a offsetWidth, la larghezza a
+    // schermo prima del transform) resta corretto a qualunque risoluzione.
+    // NOTA: se si aumenta ulteriormente lo spostamento (0.07) o la velocità
+    // (0.4) qui sotto, va aumentato anche lo scale() in CSS in proporzione
+    // (margine disponibile = (scale-1)/2 per lato), altrimenti si rischia
+    // di scoprire il bordo della foto durante lo scroll.
+    var maxOffsetX = heroBg.offsetWidth * 0.07; // < 10% di margine: sicurezza
+    var offsetX = Math.min(window.scrollY * 0.4, maxOffsetX);
+    // scroll giù -> foto a sinistra; scroll su -> torna verso destra
+    heroBg.style.transform = "translateX(" + (offsetX * -1) + "px) scale(1.2)";
   }
 
   var ticking = false;
