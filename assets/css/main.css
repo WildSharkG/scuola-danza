@@ -79,7 +79,7 @@
      Per aggiungere un font nuovo in futuro: metti il file .woff2 in
      static/fonts/, aggiungi un blocco @font-face sul modello di quelli
      sopra, poi scrivi qui il nome scelto al posto di uno dei due. */
-  --font-display: 'Playfair Display', var(--font-serif);
+  --font-display: 'Cormorant Garamond', var(--font-serif);
 
   /* spaziature */
   --header-h: 64px;
