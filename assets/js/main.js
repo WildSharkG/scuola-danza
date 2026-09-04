@@ -23,8 +23,16 @@
 
   /* ---------- Parallax leggero sull'hero (orizzontale) ---------- */
   var heroBg = document.getElementById("hero-bg");
+  var heroMobileQuery = window.matchMedia("(max-width: 899px)");
   function aggiornaParallax() {
     if (!heroBg) return;
+    // Sotto i 900px il CSS toglie lo zoom (transform: scale(1)) per mostrare
+    // più foto possibile: senza margine extra, qualunque scorrimento
+    // orizzontale scoprirebbe il bordo, quindi lo si disattiva qui.
+    if (heroMobileQuery.matches) {
+      heroBg.style.transform = "scale(1)";
+      return;
+    }
     // Il CSS applica "scale(1.2)" DOPO che il ritaglio (object-fit: cover)
     // è già stato calcolato sulla dimensione originale (100% x 780px) — così
     // il ritaglio resta identico all'originale, e lo zoom crea solo il

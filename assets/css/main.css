@@ -159,6 +159,7 @@ img {
 @media (min-width: 900px) {
   .site-header__inner {
     padding: 0 48px;
+    gap: 40px;
   }
 }
 
@@ -194,6 +195,41 @@ img {
     white-space: normal;
     line-height: 1.15;
   }
+
+  /* Sotto i 900px la foto è molto più stretta che alta rispetto alla sua
+     forma naturale (paesaggio): "object-fit: cover" deve quindi ritagliare
+     molto per riempire un riquadro alto 640px, mostrando solo una fetta
+     centrale. Un riquadro più basso avvicina la sua forma a quella della
+     foto (meno ritaglio necessario), e togliere lo zoom extra del parallax
+     evita di stringere ulteriormente l'inquadratura. */
+  .hero {
+    height: 480px;
+  }
+
+  .hero__bg {
+    transform: scale(1);
+    /* "object-fit: cover" rende comunque la foto più larga del riquadro
+       (essendo panoramica dentro un riquadro stretto), quindi c'è già un
+       margine su cui scorrere senza bisogno di zoom: basta animare
+       "object-position" da un bordo all'altro. Nessun rischio di scoprire
+       spazio vuoto: il browser mantiene sempre un ritaglio valido. */
+    animation: hero-pan-mobile 30s ease-in-out infinite alternate;
+  }
+
+  @keyframes hero-pan-mobile {
+    from {
+      object-position: 0% center;
+    }
+    to {
+      object-position: 100% center;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__bg {
+      animation: none;
+    }
+  }
 }
 
 .nav--desktop {
@@ -216,6 +252,7 @@ img {
   font-weight: 500;
   font-size: 21px;
   color: var(--text);
+  white-space: nowrap;
 }
 
 .nav--desktop .nav__link:last-child {
@@ -304,9 +341,9 @@ img {
 
 .hero__bg {
   position: absolute;
-  inset: -140px 0 auto 0;
+  inset: 0;
   width: 100%;
-  height: 780px;
+  height: 100%;
   object-fit: cover;
   object-position: center;
   transform: scale(1.2);
@@ -316,7 +353,25 @@ img {
 .hero__scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, oklch(0.9 0.03 240 / 0) 40%, var(--bg) 100%);
+  background: linear-gradient(180deg, oklch(0.9 0.03 240 / 0) 70%, var(--bg) 100%);
+}
+
+.hero__subtitle {
+  position: absolute;
+  top: var(--header-h);
+  left: 0;
+  right: 0;
+  z-index: 1;
+  margin: 0 auto 0;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: clamp(16px, 3.6vw, 21px);
+  font-weight: 500;
+  line-height: 1.5;
+  color: oklch(0.96 0.01 240);
+  text-shadow: 0 1px 10px oklch(0 0 0 / 0.45);
+  max-width: min(560px, 82vw);
+  background: radial-gradient(ellipse 55% 80% at center, oklch(0 0 0 / 0.55) 0%, oklch(0 0 0 / 0.3) 55%, oklch(0 0 0 / 0) 100%);
 }
 
 .hero__content {
@@ -325,7 +380,7 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 0 clamp(24px, 6vw, 120px) 56px;
+  padding: 0 clamp(24px, 6vw, 120px) 20px;
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -341,16 +396,6 @@ img {
   text-shadow: 0 2px 14px oklch(0 0 0 / 0.5);
 }
 
-.hero__subtitle {
-  margin: 0 0 26px;
-  font-size: clamp(16px, 3.6vw, 21px);
-  font-weight: 500;
-  line-height: 1.5;
-  color: oklch(0.96 0.01 240);
-  text-shadow: 0 1px 10px oklch(0 0 0 / 0.45);
-  max-width: min(420px, 82vw);
-}
-
 .hero__cta {
   display: flex;
   flex-wrap: wrap;
@@ -364,6 +409,9 @@ img {
 .btn {
   flex: 1;
   min-width: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   font-family: var(--font-serif);
   font-weight: 700;
@@ -384,10 +432,15 @@ img {
 }
 
 .btn--outline {
-  background: transparent;
+  background: #fff;
   border: 2px solid var(--accent);
   color: var(--accent-strong);
   padding: 13px;
+}
+
+.btn--outline:hover,
+.btn--outline:active {
+  background: #a8e6bb;
 }
 
 /* ==========================================================================
